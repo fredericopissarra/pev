@@ -131,6 +131,10 @@ int asprintf( char **pp, char *fmt, ... )
 		return -1;
 	}		
 
+	// FIX: Must reset va_list.
+	va_end( args );
+	va_start( args, fmt );
+
 	vsprintf( *pp = p, fmt, args );
 
 	va_end( args );
